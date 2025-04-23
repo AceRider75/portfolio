@@ -1,5 +1,4 @@
-
-![bNSwOP_mKPrhOhUp5hAGH](https://github.com/user-attachments/assets/84e30365-d5b7-4b8f-a172-18b07b7705ea)
+![ow0sHHtaGX7FDiW4rIDKn](https://github.com/user-attachments/assets/a172cb6d-456f-4b7d-9a77-3a505e61a26b)
 
 # AceRider75’s Terminal Portfolio
 
