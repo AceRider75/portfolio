@@ -1,0 +1,243 @@
+/* Base styles & CSS Variables */
+:root {
+    --terminal-bg: #0c0c0c;
+    --terminal-header-bg: #2d2d2d;
+    --terminal-text: #f0f0f0;
+    --terminal-prompt: #4caf50;
+    --terminal-cursor: #f0f0f0;
+    --terminal-highlight: #3498db;
+    --terminal-font: 'Courier New', monospace;
+    --terminal-header-height: 30px;
+}
+
+/* Reset html and body for full screen */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden; /* Prevent body scrolling */
+    background-color: var(--terminal-bg); /* Body background matches terminal */
+    font-family: var(--terminal-font);
+    color: var(--terminal-text);
+}
+
+* {
+    box-sizing: border-box; /* Apply box-sizing globally */
+}
+
+/* Terminal container - Make it cover the full screen */
+.terminal-container {
+    position: fixed; /* Fix to viewport */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%; /* Cover full width */
+    height: 100%; /* Cover full height */
+    background-color: var(--terminal-bg);
+    overflow: hidden; /* Container itself shouldn't scroll */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Terminal header */
+.terminal-header {
+    height: var(--terminal-header-height);
+    background-color: var(--terminal-header-bg);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+.terminal-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.terminal-button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.terminal-button.close { background-color: #ff5f56; }
+.terminal-button.minimize { background-color: #ffbd2e; }
+.terminal-button.maximize { background-color: #27c93f; }
+
+.terminal-title {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* Terminal body - Scrollable content area */
+.terminal-body {
+    flex: 1; /* Grow to fill available vertical space */
+    overflow-y: auto; /* Allow vertical scrolling *within* this element */
+    padding: 15px;
+}
+
+/* Terminal output area */
+.terminal-output {
+    margin-bottom: 15px; /* Space before the input line starts */
+    line-height: 1.4;
+}
+
+.welcome-text {
+    margin-bottom: 20px;
+}
+
+.welcome-text .ascii-art {
+    font-size: 10px;
+    line-height: 1;
+    margin-bottom: 15px;
+    white-space: pre;
+    color: var(--terminal-highlight);
+}
+
+.command {
+    color: var(--terminal-prompt);
+    font-weight: bold;
+    text-shadow: 0 0 2px var(--terminal-prompt); /* Subtle glow */
+}
+
+/* Terminal input line container */
+.terminal-input-line {
+    position: relative; /* Needed for absolute positioning of the cursor */
+    display: flex;
+    align-items: center;
+    padding: 0 15px 15px 15px;
+    flex-shrink: 0;
+}
+.terminal-prompt {
+    color: var(--terminal-prompt);
+    margin-right: 8px;
+}
+
+.terminal-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--terminal-text);
+    font-family: var(--terminal-font);
+    font-size: 16px;
+    flex: 1; /* Input field takes remaining space */
+    caret-color: transparent; /* Hide the default input cursor */
+    line-height: 1.4; /* Ensure a defined line-height */
+    
+    padding: 0; /* Remove input padding if any */
+    margin: 0; /* Remove input margin if any */
+    
+
+}
+
+.terminal-cursor {
+    /* Style the cursor block */
+    display: none; /* Initially hidden, shown on focus by JS */
+    width: 8px;    /* Width of the cursor block */
+    height: 1.2em; /* Height - adjust based on line-height/font-size */
+    background-color: var(--terminal-cursor); /* Make it a solid block */
+    position: absolute; /* Position relative to the input line container */
+    left: 0; /* JS will control position via transform */
+    top: -10px; /* Align top with input line (adjust as needed) */
+    bottom: 0; /* Stretch vertically (or use height) */
+    margin: auto 20px; /* Vertical centering if using top/bottom */
+
+    /* Animation */
+    animation: blink 1s step-end infinite;
+
+    /* Ensure it's above the input text visually, if necessary */
+    z-index: 1;
+
+}
+
+/* Blinking Animation Definition */
+@keyframes blink {
+    0%, 100% { opacity: 1; } /* Fully visible */
+    50% { opacity: 0; }      /* Fully invisible */
+}
+
+
+/* Blinking Animation Definition */
+
+/* Styles for lines outputted by commands */
+.response-line {
+    margin-bottom: 8px;
+    line-height: 1.5;
+    word-wrap: break-word; /* Ensure long text wraps */
+}
+
+.typing {
+    display: inline; /* Keep text flow */
+    white-space: pre-wrap; /* Allow wrapping while preserving spaces */
+}
+
+/* Specific styles within command output */
+.response-line h2 {
+    color: var(--terminal-highlight);
+    margin-bottom: 10px;
+    margin-top: 5px;
+    font-size: 1.1em;
+}
+
+.response-line ul {
+    list-style-type: '- '; /* Use dash for list items */
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.response-line li {
+    margin-bottom: 5px;
+}
+
+.response-line a {
+    color: var(--terminal-highlight);
+    text-decoration: none;
+}
+
+.response-line a:hover {
+    text-decoration: underline;
+}
+
+.project, .blog-post {
+    margin-bottom: 15px;
+    padding-left: 10px;
+    border-left: 2px solid var(--terminal-prompt); /* Highlight project blocks */
+}
+
+.project h3, .blog-post h3 {
+    color: var(--terminal-text); /* Standard text color for titles */
+    margin-bottom: 5px;
+    font-size: 1em;
+}
+
+/* Custom Scrollbar for WebKit browsers */
+.terminal-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terminal-body::-webkit-scrollbar-track {
+    background: var(--terminal-header-bg); /* Scrollbar track color */
+}
+
+.terminal-body::-webkit-scrollbar-thumb {
+    background-color: var(--terminal-prompt); /* Scrollbar handle color */
+    border-radius: 4px;
+    border: 2px solid var(--terminal-header-bg); /* Padding around handle */
+}
+
+/* Responsive adjustments (minimal needed for full screen) */
+@media (max-width: 768px) {
+    .welcome-text .ascii-art {
+        font-size: 8px; /* Slightly smaller ASCII art on small screens */
+    }
+    .terminal-input {
+        font-size: 14px; /* Slightly smaller input font on mobile */
+    }
+    .response-line {
+        line-height: 1.4; /* Adjust line height slightly */
+    }
+}

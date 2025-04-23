@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AceRider75</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-buttons">
+                <div class="terminal-button close"></div>
+                <div class="terminal-button minimize"></div>
+                <div class="terminal-button maximize"></div>
+            </div>
+            <div class="terminal-title">acerider75@portfolio:~</div>
+        </div>
+        <div class="terminal-body">
+            <div class="terminal-output" id="terminal-output">
+                <div class="welcome-text">
+                    <!-- ****** THIS IS THE UPDATED ASCII ART ****** -->
+                    <pre class="ascii-art">
+   ##     ####    ######   # # #   #########  # #      ######    # # #    ##########   ###########
+  #  #   #       #         #    #      #      #   #   #          #    #           #    #
+ #    #  #       #         #    #      #      #    #  #          #    #         #       ######
+ ######  #       ####      # # #       #      #    #  ####       # # #     ######             #
+ #    #  #       #         #  #        #      #   #   #          #  #       #                  #
+ #    #   ####    ######   #   #   #########  # #      ######    #   #     #           ########
+                    </pre>
+
+                    <!-- ******************************************* -->
+                    <p id="welcome-message"></p> <!-- Welcome message will be typed here -->
+                </div>
+            </div>
+            <div class="terminal-input-line">
+                <span class="terminal-prompt">visitor@portfolio:~$</span>
+                <input type="text" class="terminal-input" id="terminal-input" autofocus spellcheck="false">
+                <span class="terminal-cursor" id="terminal-cursor"></span> <!-- Cursor block -->
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
